@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() => runApp(MAGICBALL());
 
@@ -9,7 +10,12 @@ class MAGICBALL extends StatefulWidget {
 
 class _MAGICBALLState extends State<MAGICBALL> {
   @override
-  int blaaNumber = 1;
+  int ballNumber = 1;
+
+  void changeBallNumber() {
+    ballNumber = Random().nextInt(5) + 1;
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -24,9 +30,16 @@ class _MAGICBALLState extends State<MAGICBALL> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
-                child: Image.asset('images/ball$blaaNumber.png'),
-              )
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    changeBallNumber();
+                  });
+                },
+                child: Center(
+                  child: Image.asset('images/ball$ballNumber.png'),
+                ),
+              ),
             ],
           ),
         ),
